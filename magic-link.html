@@ -1,8 +1,112 @@
-<h2>Magic Link</h2>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Login Magic Link</title>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI',
+                    Helvetica, 'Apple Color Emoji', Arial, sans-serif,
+                    'Segoe UI Emoji', 'Segoe UI Symbol';
+                line-height: 1.5;
+                color: rgba(55, 53, 47, 1);
+                margin: 0;
+                padding: 0;
+                background-color: #f7f6f3;
+            }
+            .container {
+                max-width: 600px;
+                margin: 0 auto;
+                padding: 40px 20px;
+            }
+            .email-card {
+                background-color: white;
+                border-radius: 8px;
+                padding: 40px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            }
+            h1 {
+                font-size: 28px;
+                font-weight: 600;
+                margin-top: 0;
+                margin-bottom: 24px;
+            }
+            .magic-button {
+                display: inline-block;
+                background-color: #161618;
+                color: white;
+                text-decoration: none;
+                padding: 8px 16px;
+                border-radius: 4px;
+                margin: 16px 0;
+            }
+            .token-box {
+                background-color: #f7f6f3;
+                border-radius: 4px;
+                padding: 12px 16px;
+                font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo,
+                    monospace;
+                font-size: 14px;
+                margin: 16px 0;
+                word-break: break-all;
+            }
+            .footer {
+                margin-top: 24px;
+                font-size: 14px;
+                color: rgba(55, 53, 47, 0.65);
+            }
+            .logo {
+                margin-top: 32px;
+                margin-bottom: 12px;
+            }
+            .logo img {
+                width: 40px;
+                height: auto;
+            }
+            .hint {
+                font-size: 14px;
+                color: rgba(55, 53, 47, 0.65);
+                margin-bottom: 24px;
+            }
+            .app-info {
+                margin-top: 32px;
+                font-size: 14px;
+                color: rgba(55, 53, 47, 0.65);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="email-card">
+                <h1>Login</h1>
 
-<p>Follow this link to login:</p>
-<p><a href="{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=email&next={{ .RedirectTo }}">Log In</a></p>
+                <p>
+                    <a
+                        href="{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=email&next={{ .RedirectTo }}"
+                        class="magic-button"
+                        >Click here to log in</a
+                    >
+                </p>
 
-<p>or alternatively, visit the <a href="{{ .SiteURL }}/auth/verify-token?type=email&next={{ .RedirectTo }}">verify token</a> page and enter the token code: {{ .Token }}</p>
+                <p>Or, copy and paste this temporary login code:</p>
 
-<p>The link will remain valid for 24 hours or until it is used, whichever comes first. If you need to request another link, <a href="{{ .SiteURL }}/auth/signin">please click here</a>.</p>
+                <div class="token-box">{{ .Token }}</div>
+
+                <p class="hint">
+                    If you didn't try to login, you can safely ignore this
+                    email.
+                </p>
+
+                <div class="app-info">
+                    <a href="{{ .SiteURL }}">Faktur</a>, Invoice for freelancers</br>
+                    Manage your invoices, clients, and payments in one place.
+                </div>
+            </div>
+
+            <div class="footer">
+                <p>© 2025 Faktur. All rights reserved.</p>
+            </div>
+        </div>
+    </body>
+</html>
